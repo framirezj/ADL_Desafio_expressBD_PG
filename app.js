@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -9,11 +10,10 @@ app.use(express.json()); //req.body
 // CORS para toda la app
 app.use(cors());
 
-
 //bienvenida
 app.get("/", (req, res) => {
-    res.status(200).json({message: "Welcome!!!"})
-})
+  res.status(200).json({ message: "Welcome!!!" });
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`);
