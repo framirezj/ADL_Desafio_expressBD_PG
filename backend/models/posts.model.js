@@ -1,13 +1,28 @@
-import { pool } from '../database/connection.js'
+import { pool } from "../database/connection.js";
 
-const table = "posts"
+const table = "posts";
 
+export const findAll = async () => {
+  const res = await pool.query(`SELECT * FROM ${table}`);
+  return res.rows;
+};
 
+/*FRONTEND
+const agregarPost = async () => {
+    const post = { titulo, url: imgSrc, descripcion };
+    await axios.post(urlBaseServer + "/posts", post);
+    getPosts();
+  };
+*/
+export const create = async (post) => {
+  const { titulo, url, descripcion } = post;
 
- export const findAll = async () => {
-    const res = await pool.query(`SELECT * FROM ${table}`)
-    return res.rows
-}
+  const query = `INSERT INTO ${table} (titulo, img, descripcion) VALUES ($1,$2,$3) RETURNING *`;
+  const values = [titulo, url, descripcion];
+
+  const res = await pool.query(query, values);
+  return res.rows[0];
+};
 
 /*
 export const findById = async (id) => {
@@ -40,9 +55,6 @@ export const update = async (id) => {
     const res = await pool.query(query,[id])
     return res.rows[0]
 } */
-
-
-
 
 /* 
 METODOS FRONTEND
