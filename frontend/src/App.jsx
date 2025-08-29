@@ -11,6 +11,8 @@ function App() {
   const [descripcion, setDescripcion] = useState("");
   const [posts, setPosts] = useState([]);
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const getPosts = async () => {
     const { data: posts } = await axios.get(urlBaseServer + "/posts");
     setPosts([...posts]);
@@ -40,10 +42,27 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-900 text-gray-100">
-      <aside className="lg:w-80 bg-gray-800 shadow-xl p-6 flex flex-col">
-        <h2 className="mb-5 text-xl font-semibold text-gray-100">
-          Like Me &#128248;
+      <div className="bg-gray-800">
+      <div className="flex items-center px-4 pt-2">
+        <h2 className="text-xl font-semibold text-gray-100 inline-flex">
+          Like Me <span className="ml-2">📷</span>
         </h2>
+        <div className="p-4 md:hidden ml-auto">
+          <button
+            onClick={() => setIsFormOpen(!isFormOpen)}
+            className="text-gray-100 p-2 rounded-md border border-gray-500"
+          >
+            &#9776; {/* icono de burger */}
+          </button>
+        </div>
+      </div>
+
+
+      <aside
+        className={`${
+          isFormOpen ? "flex" : "hidden"
+        } md:flex flex-col lg:w-80   p-6`}
+      >
         <Form
           setTitulo={setTitulo}
           setImgSRC={setImgSRC}
@@ -51,12 +70,13 @@ function App() {
           agregarPost={agregarPost}
         />
       </aside>
+      </div>
 
       <div className="flex-1 p-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {posts.map((post, i) => (
-          <Post key={i} post={post} like={like} eliminarPost={eliminarPost} />
-        ))}
+          {posts.map((post, i) => (
+            <Post key={i} post={post} like={like} eliminarPost={eliminarPost} />
+          ))}
         </div>
       </div>
     </div>
