@@ -39,26 +39,24 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h2 className="py-5 text-center">&#128248; Like Me &#128248;</h2>
-      <div className="row m-auto px-5">
-        <div className="col-12 col-sm-4">
-          <Form
-            setTitulo={setTitulo}
-            setImgSRC={setImgSRC}
-            setDescripcion={setDescripcion}
-            agregarPost={agregarPost}
-          />
-        </div>
-        <div className="col-12 col-sm-8 px-5 row posts align-items-start">
-          {posts.map((post, i) => (
-            <Post
-              key={i}
-              post={post}
-              like={like}
-              eliminarPost={eliminarPost}
-            />
-          ))}
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-900 text-gray-100">
+      <aside className="lg:w-80 bg-gray-800 shadow-xl p-6 flex flex-col">
+        <h2 className="mb-5 text-xl font-semibold text-gray-100">
+          Like Me &#128248;
+        </h2>
+        <Form
+          setTitulo={setTitulo}
+          setImgSRC={setImgSRC}
+          setDescripcion={setDescripcion}
+          agregarPost={agregarPost}
+        />
+      </aside>
+
+      <div className="flex-1 p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {posts.map((post, i) => (
+          <Post key={i} post={post} like={like} eliminarPost={eliminarPost} />
+        ))}
         </div>
       </div>
     </div>
