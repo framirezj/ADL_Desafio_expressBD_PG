@@ -1,10 +1,11 @@
 import express from 'express'
-
 const router = express.Router()
+import { findAll } from '../models/posts.model.js';
 
 
 router.get("/", async (req, res) => {
-    res.json({message: "aqui van los post"})
+    const posts = await findAll()
+    res.json(posts)
 })
 
 

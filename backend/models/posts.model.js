@@ -4,11 +4,12 @@ const table = "posts"
 
 
 
-/* export const findAll = async () => {
-    const res = await pool.query("SELECT * FROM todos")
+ export const findAll = async () => {
+    const res = await pool.query(`SELECT * FROM ${table}`)
     return res.rows
 }
 
+/*
 export const findById = async (id) => {
 
     const query = "SELECT * FROM todos WHERE id = $1"
