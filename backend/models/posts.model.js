@@ -2,6 +2,11 @@ import { pool } from "../database/connection.js";
 
 const table = "posts";
 
+
+/* const getPosts = async () => {
+    const { data: posts } = await axios.get(urlBaseServer + "/posts");
+    setPosts([...posts]);
+  }; */
 export const findAll = async () => {
   const res = await pool.query(`SELECT * FROM ${table}`);
   return res.rows;
@@ -24,7 +29,26 @@ export const create = async (post) => {
   return res.rows[0];
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************************************** */
+
+
 /*
+EXAMPLES METODOS BACKEND
 export const findById = async (id) => {
 
     const query = "SELECT * FROM todos WHERE id = $1"
@@ -56,18 +80,18 @@ export const update = async (id) => {
     return res.rows[0]
 } */
 
-/* 
-METODOS FRONTEND
-const getPosts = async () => {
-    const { data: posts } = await axios.get(urlBaseServer + "/posts");
-    setPosts([...posts]);
-  };
 
-  const agregarPost = async () => {
-    const post = { titulo, url: imgSrc, descripcion };
-    await axios.post(urlBaseServer + "/posts", post);
-    getPosts();
-  };
+
+
+
+
+
+
+
+    
+/******************************************************* */
+/*
+METODOS FRONTEND
 
   // este método se utilizará en el siguiente desafío
   const like = async (id) => {
