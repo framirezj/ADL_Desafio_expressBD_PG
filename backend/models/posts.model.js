@@ -40,3 +40,33 @@ export const update = async (id) => {
     const res = await pool.query(query,[id])
     return res.rows[0]
 } */
+
+
+
+
+/* 
+METODOS FRONTEND
+const getPosts = async () => {
+    const { data: posts } = await axios.get(urlBaseServer + "/posts");
+    setPosts([...posts]);
+  };
+
+  const agregarPost = async () => {
+    const post = { titulo, url: imgSrc, descripcion };
+    await axios.post(urlBaseServer + "/posts", post);
+    getPosts();
+  };
+
+  // este método se utilizará en el siguiente desafío
+  const like = async (id) => {
+    await axios.put(urlBaseServer + `/posts/like/${id}`);
+    getPosts();
+  };
+
+  // este método se utilizará en el siguiente desafío
+  const eliminarPost = async (id) => {
+    await axios.delete(urlBaseServer + `/posts/${id}`);
+    getPosts();
+  };
+
+*/
