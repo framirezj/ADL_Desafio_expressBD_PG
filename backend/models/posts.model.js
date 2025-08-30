@@ -22,7 +22,7 @@ const agregarPost = async () => {
 export const create = async (post) => {
   const { titulo, url, descripcion } = post;
 
-  const query = `INSERT INTO ${table} (titulo, img, descripcion) VALUES ($1,$2,$3) RETURNING *`;
+  const query = `INSERT INTO ${table} (titulo, img, descripcion) VALUES (UPPER($1),$2,$3) RETURNING *`;
   const values = [titulo, url, descripcion];
 
   const res = await pool.query(query, values);
