@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { create, findAll } from "../models/posts.model.js";
+import { create, findAll, update } from "../models/posts.model.js";
 import validaBody from "../helpers/validaBody.js";
 
 router.get("/", async (req, res) => {
@@ -28,5 +28,21 @@ router.post("/", async (req, res) => {
     res.status(500).json(error)
   }
 });
+
+
+router.put("/:id", async (req, res) => {
+  try {
+
+    //falta validar si no existe
+
+    const updated = await update(req.params.id)
+    console.log(updated)
+    res.status(200).json(updated)
+  } catch (error) {
+    console.error("Error al editar el post", error)
+    res.status(500).json({error_message: error})
+  }
+
+})
 
 export default router;
