@@ -13,12 +13,12 @@ export const findAll = async () => {
 };
 
 export const findById = async (postId) => {
-  const query = `SELECT * FROM ${table} WHERE id = $1`
-  const values = [postId]
+  const query = `SELECT * FROM ${table} WHERE id = $1`;
+  const values = [postId];
 
-  const res = await pool.query(query, values)
-  return res.rows[0]
-}
+  const res = await pool.query(query, values);
+  return res.rows[0];
+};
 
 /*FRONTEND
 const agregarPost = async () => {
@@ -46,28 +46,13 @@ export const create = async (post) => {
 */
 
 export const update = async (postId) => {
-
   const query = `UPDATE ${table} SET likes = COALESCE(likes, 0) + 1 WHERE id = $1 RETURNING *`;
-  const res = await pool.query(query, [postId])
+  const res = await pool.query(query, [postId]);
 
-
-  return res.rows[0]
-
-}
-
-
-
-
-
-
-
-
-
-
-
+  return res.rows[0];
+};
 
 /*********************************************************** */
-
 
 /*
 EXAMPLES METODOS BACKEND
@@ -101,15 +86,6 @@ export const update = async (id) => {
     const res = await pool.query(query,[id])
     return res.rows[0]
 } */
-
-
-
-
-
-
-
-
-
 
 /******************************************************* */
 /*

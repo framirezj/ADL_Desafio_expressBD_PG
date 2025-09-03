@@ -15,38 +15,34 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const errors = validaBody(req.body)
+    const errors = validaBody(req.body);
 
     if (errors.length > 0) {
-      return res.status(400).json(errors)
+      return res.status(400).json(errors);
     }
 
     const saved = await create(req.body);
     res.status(201).json(saved);
   } catch (error) {
-    console.error("Error al crear el post:", error)
-    res.status(500).json(error)
+    console.error("Error al crear el post:", error);
+    res.status(500).json(error);
   }
 });
 
-
 router.put("/:id", async (req, res) => {
   try {
-
     //falta validar si no existe
-    const post = await findById(req.params.id)
+    const post = await findById(req.params.id);
     if (!post) {
-      return res.status(404).json({error_message: "EL id no se encuentra."})
+      return res.status(404).json({ error_message: "EL id no se encuentra." });
     }
 
-    const updated = await update(req.params.id)
-    res.status(200).json(updated)
-    
+    const updated = await update(req.params.id);
+    res.status(200).json(updated);
   } catch (error) {
-    console.error("Error al editar el post", error)
-    res.status(500).json({error_message: error})
+    console.error("Error al editar el post", error);
+    res.status(500).json({ error_message: error });
   }
-
-})
+});
 
 export default router;
