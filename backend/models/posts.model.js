@@ -12,7 +12,13 @@ export const findAll = async () => {
   return res.rows;
 };
 
+export const findById = async (postId) => {
+  const query = `SELECT * FROM ${table} WHERE id = $1`
+  const values = [postId]
 
+  const res = await pool.query(query, values)
+  return res.rows[0]
+}
 
 /*FRONTEND
 const agregarPost = async () => {
