@@ -2,7 +2,7 @@ import { pool } from "../database/connection.js";
 
 const table = "posts";
 
-
+/*FRONTEND
 /* const getPosts = async () => {
     const { data: posts } = await axios.get(urlBaseServer + "/posts");
     setPosts([...posts]);
@@ -10,6 +10,14 @@ const table = "posts";
 export const findAll = async () => {
   const res = await pool.query(`SELECT * FROM ${table}`);
   return res.rows;
+};
+
+export const findById = async (postId) => {
+  const query = `SELECT * FROM ${table} WHERE id = $1`;
+  const values = [postId];
+
+  const res = await pool.query(query, values);
+  return res.rows[0];
 };
 
 /*FRONTEND
@@ -29,23 +37,40 @@ export const create = async (post) => {
   return res.rows[0];
 };
 
+/*FRONTEND
+   este método se utilizará en el siguiente desafío
+  const like = async (id) => {
+    await axios.put(urlBaseServer + `/posts/like/${id}`);
+    getPosts();
+  };
+*/
+
+export const update = async (postId) => {
+  const query = `UPDATE ${table} SET likes = COALESCE(likes, 0) + 1 WHERE id = $1 RETURNING *`;
+  const res = await pool.query(query, [postId]);
+
+  return res.rows[0];
+};
 
 
+/*
+// este método se utilizará en el siguiente desafío
+  const eliminarPost = async (id) => {
+    await axios.delete(urlBaseServer + `/posts/${id}`);
+    getPosts();
+  };
+*/
 
+export const deleteById = async (postId) => {
+  const query = `DELETE FROM ${table} WHERE id = $1 RETURNING *`
+  const values = [postId]
+  const res = await pool.query(query, values)
 
-
-
-
-
-
-
-
-
-
+  return res.rows[0]
+}
 
 
 /*********************************************************** */
-
 
 /*
 EXAMPLES METODOS BACKEND
@@ -80,29 +105,12 @@ export const update = async (id) => {
     return res.rows[0]
 } */
 
-
-
-
-
-
-
-
-
-    
 /******************************************************* */
 /*
 METODOS FRONTEND
 
-  // este método se utilizará en el siguiente desafío
-  const like = async (id) => {
-    await axios.put(urlBaseServer + `/posts/like/${id}`);
-    getPosts();
-  };
+  
 
-  // este método se utilizará en el siguiente desafío
-  const eliminarPost = async (id) => {
-    await axios.delete(urlBaseServer + `/posts/${id}`);
-    getPosts();
-  };
+  
 
 */
