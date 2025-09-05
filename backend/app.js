@@ -20,7 +20,9 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome!!!" });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening on port ${process.env.PORT}`);
-  console.log(`http://localhost:${process.env.PORT}`);
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+  console.log(`http://localhost:${port}`);
 });
