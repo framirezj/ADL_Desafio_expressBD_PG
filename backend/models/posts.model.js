@@ -8,7 +8,7 @@ const table = "posts";
     setPosts([...posts]);
   }; */
 export const findAll = async () => {
-  const res = await pool.query(`SELECT * FROM ${table}`);
+  const res = await pool.query(`SELECT * FROM ${table} ORDER BY id`);
   return res.rows;
 };
 
