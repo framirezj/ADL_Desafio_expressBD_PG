@@ -4,7 +4,7 @@ import Form from "./components/Form";
 import Post from "./components/Post";
 import NoPosts from "./components/NoPosts";
 
-const urlBaseServer = "http://localhost:3000";
+const urlBaseServer = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function App() {
   const [titulo, setTitulo] = useState("");
