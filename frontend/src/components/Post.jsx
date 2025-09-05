@@ -4,7 +4,7 @@ function Post({
   eliminarPost,
 }) {
   return (
-    <div className="bg-gray-900 shadow-xl rounded-2xl overflow-hidden text-gray-100 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="bg-gray-900 shadow-xl shadow-blue-500/20 rounded-2xl overflow-hidden text-gray-100 transform transition duration-300 hover:scale-105 hover:shadow-2xl border-2 border-dashed border-gray-500">
       {/* Contenedor imagen */}
       <div className="relative">
         <img className="w-full h-56 object-cover" src={img} />
