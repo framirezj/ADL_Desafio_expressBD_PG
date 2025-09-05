@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { create, findAll, findById, update } from "../models/posts.model.js";
+import { create, deleteById, findAll, findById, update } from "../models/posts.model.js";
 import validaBody from "../helpers/validaBody.js";
 
 router.get("/", async (req, res) => {
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    //falta validar si no existe
+
     const post = await findById(req.params.id);
     if (!post) {
       return res.status(404).json({ error_message: "EL id no se encuentra." });
@@ -44,5 +44,22 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ error_message: error });
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const post = await findById(req.params.id)
+    if (!post) {
+      return res.status(404).json({ error_message: "EL id no se encuentra." });
+    }
+
+    //metodo para eliminar
+    const deletedPost = await deleteById(req.params.id)
+
+    res.status(200).json({...deletedPost, message: "Recurso Eliminado"})
+  } catch (error) {
+    console.error("Error al eliminar el recurso", error)
+    res.status(500).json({ error_message: error })
+  }
+})
 
 export default router;

@@ -52,6 +52,24 @@ export const update = async (postId) => {
   return res.rows[0];
 };
 
+
+/*
+// este método se utilizará en el siguiente desafío
+  const eliminarPost = async (id) => {
+    await axios.delete(urlBaseServer + `/posts/${id}`);
+    getPosts();
+  };
+*/
+
+export const deleteById = async (postId) => {
+  const query = `DELETE FROM ${table} WHERE id = $1 RETURNING *`
+  const values = [postId]
+  const res = await pool.query(query, values)
+
+  return res.rows[0]
+}
+
+
 /*********************************************************** */
 
 /*
@@ -93,10 +111,6 @@ METODOS FRONTEND
 
   
 
-  // este método se utilizará en el siguiente desafío
-  const eliminarPost = async (id) => {
-    await axios.delete(urlBaseServer + `/posts/${id}`);
-    getPosts();
-  };
+  
 
 */
