@@ -2,6 +2,11 @@
 
 Este proyecto es una aplicación fullstack que permite publicar, visualizar y gestionar posts con imágenes y descripciones. Utiliza Express.js y PostgreSQL en el backend, y React con Vite en el frontend.
 
+https://likeme-frontend.onrender.com/
+
+<img width="1845" height="852" alt="image" src="https://github.com/user-attachments/assets/2cb2471e-33a7-4346-9f59-773e18dae348" />
+
+
 ## Estructura del proyecto
 
 ```
